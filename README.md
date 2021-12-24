@@ -1,5 +1,5 @@
 # BLOCKCHAIN DATA STRUCTURE
-This a basic implementation of the blockchain data structure without a merkle tree nor any proof of work. Only blocks referecing older blocks. Making it for learning purposes only
+This a basic implementation of the blockchain data structure without a merkle tree nor any proof of work. Only blocks referecing previous blocks. Only coding it for learning purposes.
 
 ---
 
@@ -52,5 +52,5 @@ print(transaction_1.get_transaction_string())
 ---
 
 ## Blockchain
-It's the actual data structure, it contains block each referencing to the previous one, allowing only one valid chain.
+It's the actual data structure, it contains blocks each referencing to the previous one, allowing only one valid chain.
 Some things need to be set by hand at the beginning, like the **genesis block** that should be hard coded afaik. Then you could add blocks to your chain pretty easily. Though without any **Proof Of Work**, anyone could change a transaction in a block and easily compute the hash of the next blocks... So i'll need to implement it one day.
