@@ -15,4 +15,4 @@ class transaction():
 		return f"{self.hashed_sender} > {self.hashed_receiver} ? 0x{self.amount:08X}"
 
 	def get_transaction_string(self):
-		return f"{self.sender} > {self.receiver} ? {self.amount}"
+		return f"{self.sender.ljust(32)} > {self.receiver.ljust(34)} ? {self.amount:08d}"

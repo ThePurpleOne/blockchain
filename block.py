@@ -1,7 +1,9 @@
 from datetime import datetime
 import hashlib
 import random
-import transaction
+import colorama
+from transaction import transaction
+from colorama import Fore, Back
 
 # https://developer.bitcoin.org/reference/block_chain.html
 class block():
@@ -15,6 +17,7 @@ class block():
 	"""
 
 	def __init__(self, index, txs, previous_hash):
+		colorama.init()
 		self.index = index
 		self.txs = txs
 		self.previous_hash = previous_hash
@@ -40,11 +43,8 @@ class block():
 		return hashlib.sha256(str(self.txs).encode('ASCII')).hexdigest()
 
 	def show_hashed(self):
-		print("\n----------------------------------------------------------------------------------------")
-		print("------------------------------------- HASHED BLOCK -------------------------------------")
-		print("----------------------------------------------------------------------------------------\n")
+		print(f"\n\n{Fore.YELLOW}----------------------------------------- BLOCK {self.index} -----------------------------------------")
 
-		print("#################################### HEADER ###################################")
 		print(f"Block number : {self.index}")
 		print(f"Block hash   : {self.hash}")
 		print(f"Merkle hash  : {self.merkle}")
@@ -52,20 +52,17 @@ class block():
 		print(f"Time stamp   : {self.time_stamp}")
 		print(f"Nonce        : {self.nonce}")
 
-		print("###################################### TRANSACTIONS #####################################", end="\n\n")
+		print(f"{Fore.MAGENTA}####################################### TRANSACTIONS ######################################")
 		print("--- ID ---", end=" ")
 		print("------------ SENDER ------------", end="   ")
 		print("----------- RECEIVER -----------", end="   ")
 		print("- AMOUNT -")
 		for i, transaction in enumerate(self.txs):
 			print(f"0x{i:08X} {transaction.get_hashed_transaction_string()}")
-
+	
 	def show(self):
-		print("\n----------------------------------------------------------------------------------------")
-		print("---------------------------------------- BLOCK -----------------------------------------")
-		print("----------------------------------------------------------------------------------------\n")
-		
-		print("#################################### HEADER ###################################")
+		print(f"\n\n{Fore.YELLOW}----------------------------------------- BLOCK {self.index} -----------------------------------------")
+
 		print(f"Block number : {self.index}")
 		print(f"Block hash   : {self.hash}")
 		print(f"Merkle hash  : {self.merkle}")
@@ -73,6 +70,11 @@ class block():
 		print(f"Time stamp   : {self.time_stamp}")
 		print(f"Nonce        : {self.nonce}")
 
-		print("###################################### TRANSACTIONS #####################################", end="\n\n")
-		for transaction in self.txs:
-			print(f"{transaction.get_transaction_string()}")
+		print(f"{Fore.MAGENTA}####################################### TRANSACTIONS ######################################")
+		print("--- ID ---", end=" ")
+		print("------------ SENDER ------------", end="   ")
+		print("----------- RECEIVER -----------", end="   ")
+		print("- AMOUNT -")
+		for i, transaction in enumerate(self.txs):
+			print(f"0x{i:08X} {transaction.get_transaction_string()}")
+
