@@ -47,10 +47,13 @@ print(transaction_1.get_transaction_string())
 ```
 ![](assets/transaction.png)
 
-
-
 ---
 
 ## Blockchain
 It's the actual data structure, it contains blocks each referencing to the previous one, allowing only one valid chain.
 Some things need to be set by hand at the beginning, like the **genesis block** that should be hard coded afaik. Then you could add blocks to your chain pretty easily. Though without any **Proof Of Work**, anyone could change a transaction in a block and easily compute the hash of the next blocks... So i'll need to implement it one day.
+
+## TODO
+- [ ] Proof Of Work
+- [ ] Merkle
+- [ ] Check if a transaction can be done (no debt)
